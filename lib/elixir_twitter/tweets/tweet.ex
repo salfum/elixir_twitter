@@ -6,10 +6,11 @@ defmodule ElixirTwitter.Tweets.Tweet do
   alias ElixirTwitter.Accounts.User
 
   @required [:text, :user_id]
-  @optional []
+  @optional [:parent_id]
 
   schema "tweets" do
     field :text, :string
+    field :parent_id, :string
 
     belongs_to :user, User
 
