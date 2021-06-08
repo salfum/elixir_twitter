@@ -15,8 +15,11 @@ defmodule ElixirTwitterWeb.TweetsController do
     Return tweet and all replies by id of tweet sorted by insert date
   """
   def show_with_replies(conn, %{"id" => id}) do
-    tweet = Tweets.find_by_id(id)
-    replies = Tweets.replies(id)
+    tweet_task = Task.async(fn -> Tweets.find_by_id(id) end)
+    replies_task = Task.async(fn -> Tweets.replies(id) end)
+
+    tweet = Task.await(tweet_task)
+    replies = Task.await(replies_task)
     render(conn, "replies.json", %{tweet: tweet, replies: replies})
   end
 
