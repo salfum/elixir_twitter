@@ -1,5 +1,5 @@
 defmodule ElixirTwitter.Guardian do
-  use Guardian, otp_app: :myApi
+  use Guardian, otp_app: :elixirTwitter
 
   def subject_for_token(user, _claims) do
     sub = to_string(user.id)
