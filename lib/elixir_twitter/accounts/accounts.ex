@@ -8,13 +8,10 @@ defmodule ElixirTwitter.Accounts do
 
   def create_user(attrs), do: UserQueries.create(attrs)
 
-  defp get_by_email(email) when is_binary(email) do
+  def get_by_email(email) when is_binary(email) do
     case Repo.get_by(User, email: email) do
-      nil ->
-        dummy_checkpw()
-        {:error, "Login error."}
-      user ->
-        {:ok, user}
+      nil -> {:error, "Login error."}
+      User -> {:ok, User}
     end
   end
 
@@ -27,8 +24,10 @@ defmodule ElixirTwitter.Accounts do
   end
 
   defp email_password_auth(email, password) when is_binary(email) and is_binary(password) do
-    with {:ok, user} <- get_by_email(email),
-         do: verify_password(password, user)
+    case get_by_email(email) do
+      :ok -> User
+      :error -> dummy_checkpw()
+    end
   end
 
   def token_sign_in(email, password) do

@@ -14,7 +14,7 @@ defmodule ElixirTwitterWeb.Router do
   end
 
   pipeline :jwt_authenticated do
-    plug ElixirTwitterWeb.Guardian.AuthPipeline
+    plug ElixirTwitterWeb.AuthPipelinePlug
   end
 
   scope "/", ElixirTwitterWeb do
@@ -35,8 +35,6 @@ defmodule ElixirTwitterWeb.Router do
     resources "/users", UsersController, only: [:create]
     post "/sign_up", UsersController, :sign_up
     post "/sign_in", UsersController, :sign_in
-
-    resources "/session", SessionController
 
     resources "/tweets", TweetsController, only: [:index, :create]
     get "/tweets/:id", TweetsController, :show_with_replies

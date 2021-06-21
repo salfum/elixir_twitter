@@ -1,4 +1,4 @@
-defmodule ElixirTwitterWeb.Guardian.AuthPipeline do
+defmodule ElixirTwitterWeb.AuthPipelinePlug do
   use Guardian.Plug.Pipeline,
       otp_app: :elixirTwitter,
       module: ElixirTwitter.Guardian,
