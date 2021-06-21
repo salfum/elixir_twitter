@@ -13,6 +13,10 @@ defmodule ElixirTwitterWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :jwt_authenticated do
+    plug ElixirTwitterWeb.AuthPipelinePlug
+  end
+
   scope "/", ElixirTwitterWeb do
     pipe_through :browser
 
@@ -20,9 +24,18 @@ defmodule ElixirTwitterWeb.Router do
   end
 
   scope "/api", ElixirTwitterWeb do
+    pipe_through [:api, :jwt_authenticated]
+
+    get "/current_user", UsersController, :show
+  end
+
+    scope "/api", ElixirTwitterWeb do
     pipe_through :api
 
     resources "/users", UsersController, only: [:create]
+    post "/sign_up", UsersController, :sign_up
+    post "/sign_in", UsersController, :sign_in
+
     resources "/tweets", TweetsController, only: [:index, :create]
     get "/tweets/:id", TweetsController, :show_with_replies
   end
