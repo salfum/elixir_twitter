@@ -2,6 +2,7 @@ defmodule ElixirTwitterWeb.TweetsController do
   use ElixirTwitterWeb, :controller
 
   alias ElixirTwitter.Tweets
+  alias ElixirTwitter.Likes
 
   @doc """
     Return all tweets sorted by insert date
