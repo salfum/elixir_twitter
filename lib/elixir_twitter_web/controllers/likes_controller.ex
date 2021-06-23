@@ -10,8 +10,10 @@ defmodule ElixirTwitterWeb.LikesController do
   def like_tweet(conn, params) do
     user = Guardian.Plug.current_resource(conn)
     tweet = Tweets.find_by_id(params["tweet_id"])
-    like = Likes.add_like(%{"user_id" => user.id, "tweet_id" => tweet.id})
-    render(conn, "show.json", %{like: like})
+    
+    case Likes.add_like(%{"user_id" => user.id, "tweet_id" => tweet.id}) do
+      {:ok, like} -> render(conn, "show.json", %{like: like})
+    end
   end
 
   @doc """
