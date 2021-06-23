@@ -27,6 +27,8 @@ defmodule ElixirTwitterWeb.Router do
     pipe_through [:api, :jwt_authenticated]
 
     get "/current_user", UsersController, :show
+
+    post "/tweets/like", LikesController, :like_tweet
   end
 
     scope "/api", ElixirTwitterWeb do
@@ -38,6 +40,7 @@ defmodule ElixirTwitterWeb.Router do
 
     resources "/tweets", TweetsController, only: [:index, :create]
     get "/tweets/:id", TweetsController, :show_with_replies
+    get "/likes/:user_id", LikesController, :get_likes
   end
 
   # Enables LiveDashboard only for development
