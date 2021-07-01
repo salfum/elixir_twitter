@@ -25,6 +25,22 @@ defmodule ElixirTwitterWeb.TweetsController do
   end
 
   @doc """
+    Return tweets posted by user's subscribers
+  """
+  def subs_tweets(conn, %{"user_id" => user_id}) do
+    tweets = Tweets.subs_tweets(user_id)
+    render(conn, "subs_tweets.json", %{tweets: tweets})
+  end
+
+  @doc """
+    Return tweets which was liked by user's subscribers
+  """
+  def subs_liked_tweets(conn, %{"user_id" => user_id}) do
+    tweets = Tweets.liked_tweets(user_id)
+    render(conn, "subs_liked_tweets.json", %{tweets: tweets})
+  end
+
+  @doc """
     Create tweet from transferred params
   """
   def create(conn, params) do

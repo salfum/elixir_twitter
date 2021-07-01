@@ -26,4 +26,12 @@ defmodule ElixirTwitterWeb.TweetsView do
       tweet: render_one(tweet, __MODULE__, "show.json", as: :tweet),
     }
   end
+
+  def render("subs_tweets.json", %{tweets: tweets}) do
+    render_many(tweets, __MODULE__, "show.json", as: :tweet)
+  end
+
+  def render("subs_liked_tweets.json", %{tweets: tweets}) do
+    render_many(tweets, __MODULE__, "show.json", as: :tweet)
+  end
 end
