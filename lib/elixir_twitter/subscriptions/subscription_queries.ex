@@ -1,5 +1,4 @@
 defmodule ElixirTwitter.Subscriptions.SubscriptionQueries do
-
   alias ElixirTwitter.Repo
   alias ElixirTwitter.Subscriptions.Subscription
 
@@ -12,8 +11,10 @@ defmodule ElixirTwitter.Subscriptions.SubscriptionQueries do
   end
 
   def get_by_user_id(user_id) do
-    query = from s in Subscription,
-                 where: s.user_id == ^user_id
+    query =
+      from s in Subscription,
+        where: s.user_id == ^user_id
+
     Repo.all(query)
   end
 end

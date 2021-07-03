@@ -3,7 +3,6 @@ defmodule ElixirTwitter.Subscriptions.Subscription do
 
   import Ecto.Changeset
 
-  alias Ecto.Changeset
   alias ElixirTwitter.Accounts.User
   alias ElixirTwitter.Subscriptions.Subscription
 

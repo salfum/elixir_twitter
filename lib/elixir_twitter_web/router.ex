@@ -31,7 +31,7 @@ defmodule ElixirTwitterWeb.Router do
     post "/tweets/like", LikesController, :like_tweet
   end
 
-    scope "/api", ElixirTwitterWeb do
+  scope "/api", ElixirTwitterWeb do
     pipe_through :api
 
     resources "/users", UsersController, only: [:create]

@@ -1,7 +1,6 @@
 defmodule ElixirTwitterWeb.LikesController do
   use ElixirTwitterWeb, :controller
 
-  alias ElixirTwitter.Tweets
   alias ElixirTwitter.Likes
 
   @doc """
