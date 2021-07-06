@@ -31,7 +31,7 @@ defmodule ElixirTwitterWeb.Router do
     post "/tweets/like", LikesController, :like_tweet
   end
 
-    scope "/api", ElixirTwitterWeb do
+  scope "/api", ElixirTwitterWeb do
     pipe_through :api
 
     resources "/users", UsersController, only: [:create]
@@ -40,7 +40,13 @@ defmodule ElixirTwitterWeb.Router do
 
     resources "/tweets", TweetsController, only: [:index, :create]
     get "/tweets/:id", TweetsController, :show_with_replies
+    get "/user/:user_id/subscribers_tweets", TweetsController, :subscribers_tweets
+    get "/user/:user_id/subscribers_liked_tweets", TweetsController, :subscribers_liked_tweets
+
     get "/likes/:user_id", LikesController, :get_likes
+
+    get "/subscribers/:user_id", SubscriptionsController, :get_subscribers
+    post "/subscribe", SubscriptionsController, :subscribe
   end
 
   # Enables LiveDashboard only for development

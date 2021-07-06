@@ -5,6 +5,7 @@ defmodule ElixirTwitter.Accounts.User do
 
   alias Ecto.Changeset
   alias ElixirTwitter.Tweets.Tweet
+  alias ElixirTwitter.Likes.Like
 
   @required [:email, :password, :username]
   @optional [:name, :bio]
@@ -18,6 +19,7 @@ defmodule ElixirTwitter.Accounts.User do
     field :bio, :string
 
     has_many :tweets, Tweet
+    has_many :likes, Like
 
     timestamps()
   end

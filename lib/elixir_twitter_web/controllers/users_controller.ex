@@ -22,6 +22,7 @@ defmodule ElixirTwitterWeb.UsersController do
       {:ok, token, _claims} ->
         conn
         |> render("jwt.json", jwt: token)
+
       _ ->
         {:error, :unauthorized}
     end
@@ -29,6 +30,7 @@ defmodule ElixirTwitterWeb.UsersController do
 
   def show(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
+
     conn
     |> render("show.json", user: user)
   end

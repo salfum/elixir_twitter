@@ -3,7 +3,6 @@ defmodule ElixirTwitter.Likes.Like do
 
   import Ecto.Changeset
 
-  alias Ecto.Changeset
   alias ElixirTwitter.Tweets.Tweet
   alias ElixirTwitter.Accounts.User
   alias ElixirTwitter.Likes.Like
