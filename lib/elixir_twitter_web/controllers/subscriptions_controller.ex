@@ -7,6 +7,7 @@ defmodule ElixirTwitterWeb.SubscriptionsController do
     Subscribe one user to another
   """
   def subscribe(conn, params) do
+    # TODO: case check for errors action_fallback
     with {:ok, subscriber} <- Subscriptions.subscribe(params) do
       render(conn, "show.json", %{subscriber: subscriber})
     end

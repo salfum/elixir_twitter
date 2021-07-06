@@ -1,6 +1,6 @@
 defmodule ElixirTwitter.Subscriptions do
   alias ElixirTwitter.Subscriptions.SubscriptionQueries
 
-  def subscribe(attrs), do: SubscriptionQueries.create(attrs)
-  def get_subscribers(user_id), do: SubscriptionQueries.get_by_user_id(user_id)
+  defdelegate subscribe(attrs), to: SubscriptionQueries, as: :create
+  defdelegate get_subscribers(user_id), to: SubscriptionQueries, as: :get_by_user_id
 end

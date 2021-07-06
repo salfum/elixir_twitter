@@ -6,7 +6,7 @@ defmodule ElixirTwitter.Accounts do
 
   import Comeonin.Argon2, only: [dummy_checkpw: 0]
 
-  def create_user(attrs), do: UserQueries.create(attrs)
+  defdelegate create_user(attrs), to: UserQueries, as: :create
 
   def get_by_email(email) when is_binary(email) do
     case Repo.get_by(User, email: email) do

@@ -40,8 +40,8 @@ defmodule ElixirTwitterWeb.Router do
 
     resources "/tweets", TweetsController, only: [:index, :create]
     get "/tweets/:id", TweetsController, :show_with_replies
-    get "/user/:user_id/subs_tweets", TweetsController, :subs_tweets
-    get "/user/:user_id/subs_liked_tweets", TweetsController, :subs_liked_tweets
+    get "/user/:user_id/subscribers_tweets", TweetsController, :subscribers_tweets
+    get "/user/:user_id/subscribers_liked_tweets", TweetsController, :subscribers_liked_tweets
 
     get "/likes/:user_id", LikesController, :get_likes
 

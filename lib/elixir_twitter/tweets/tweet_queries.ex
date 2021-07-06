@@ -54,8 +54,7 @@ defmodule ElixirTwitter.Tweets.TweetQueries do
   def subscribers_liked_tweets(user_id) do
     query =
       from tweet in Tweet,
-        join: like in Like,
-        on: tweet.id == like.tweet_id,
+        join: like in assoc(tweet, :likes),
         join: subscriber in Subscription,
         on: like.user_id == subscriber.sub_user_id,
         where: subscriber.user_id == ^user_id,
